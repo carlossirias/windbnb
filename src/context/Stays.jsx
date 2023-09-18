@@ -8,7 +8,7 @@ export function StayProvider ({children})
 {
     const [stays, setStays] = useState(staysRes)
     const [filter, setFilters] = useState({
-        city: 'Helsinki',
+        city: 'All',
         maxGuests: 0
     })
     console.log(stays)

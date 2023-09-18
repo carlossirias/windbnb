@@ -1,13 +1,27 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getCities } from "../services/getCities"
 import { AdressIcon } from "./icons-app"
 import { CloseIcon, SearchIcon } from "./icons-app"
+import { useFilters } from "../hocks/useFilters"
 
 
 export function Modal({closeModal, modal, actualCity})
 {
+    const {filter, setFilters} = useFilters()
     const [isLocation, setIsLocation] = useState(true)
+    const [guests, setGuests] = useState({
+        children: 0,
+        adults: 0,
+    })
+
+    useEffect(()=>{
+        const children = guests.children
+        const adults = guests.adults
+
+        const totalGuests = children + adults
+        setFilters({ ...filter, maxGuests: totalGuests})     
+    }, [guests])
 
     const modalClass = modal ? 'visible' : 'hidden ';
 
@@ -19,6 +33,27 @@ export function Modal({closeModal, modal, actualCity})
     const handleLocation = () => { setIsLocation(true) }
     const handleGuests = () => { setIsLocation(false)}
 
+    const plusChildrenGuests = ()=>{ setGuests({...guests, children: guests.children + 1})}
+    const plusAdultsGuests = ()=>{ setGuests({...guests, adults: guests.adults + 1})}
+
+    const subtractChildrenGuests = () =>
+    {
+        if(guests.children <= 0) return
+        setGuests({...guests, children: guests.children - 1})
+    }
+
+    const subtractAdultsGuests = () =>
+    {
+        if(guests.adults <= 0) return
+        setGuests({...guests, adults: guests.adults - 1})
+    }
+
+    const handleCity = (event) =>
+    {
+        const cityName = event?.target?.value;
+        setFilters({ ...filter, city: cityName})     
+    }
+
     return (
         <div className={`modal__container pointer-events-auto flex fixed z-0 top-0 left-0 right-0 bottom-0  ${modalClass} `}>
                 <a href="#" onClick={closeModal} className="modal__bg bg-black/20"></a>
@@ -26,7 +61,7 @@ export function Modal({closeModal, modal, actualCity})
                     <div className="max-w-[1800px] py-16 px-4 md:px-20 w-full h-full ">
                         <div className="w-full md:hidden flex items-center place-content-between">
                             <span className="font-bold text-[#333333]">Edit search</span>
-                            <button><CloseIcon color="#333333" onClick={closeModal} /></button>
+                            <button onClick={closeModal}><CloseIcon color="#333333"  /></button>
                         </div>
 
                         <div className="flex flex-col h-full gap-6 md:justify-center">
@@ -55,7 +90,7 @@ export function Modal({closeModal, modal, actualCity})
                                 <div className=" flex flex-col md:p-2 md:h-[240px]">
                                     {
                                         isLocation && cities.map(city => {
-                                            return <button key={city} value={city} className={`flex hover:bg-gray-100 transition p-4 gap-2 items-center ${actualCity == city ? 'bg-gray-50' : ''} font-normal`}> <AdressIcon color="#4F4F4F" /> {city + ', Finland'}</button>
+                                            return <button key={city} onClick={handleCity} value={city} className={`flex hover:bg-gray-100 transition p-4 gap-2 items-center ${actualCity == city ? 'bg-gray-50' : ''} font-normal`}> <AdressIcon color="#4F4F4F" /> {city + ', Finland'}</button>
                                         })
                                     }
                                 </div>
@@ -65,9 +100,9 @@ export function Modal({closeModal, modal, actualCity})
                                         <span className="text-[#333] font-bold">Adults</span>
                                         <span className="text-[#BDBDBD] font-normal">Ages 13 or above</span>
                                         <div className="flex gap-4 mt-3 items-center">
-                                            <button className="flex items-center px-2 border border-[#828282] transition text-[#828282] rounded">-</button>
-                                            <span className="text-[#333] font-bold">0</span>
-                                            <button className="flex items-center px-2 border border-[#828282] text-[#828282] rounded">+</button>
+                                            <button className="flex items-center px-2 border border-[#828282] transition text-[#828282] rounded" onClick={subtractAdultsGuests}>-</button>
+                                            <span className="text-[#333] font-bold">{guests.adults}</span>
+                                            <button className="flex items-center px-2 border border-[#828282] text-[#828282] rounded" onClick={plusAdultsGuests}>+</button>
                                         </div>
                                     </div>}
 
@@ -75,9 +110,9 @@ export function Modal({closeModal, modal, actualCity})
                                         <span className="text-[#333] font-bold">Children</span>
                                         <span className="text-[#BDBDBD] font-normal">Ages 2-12</span>
                                         <div className="flex gap-4 mt-3 items-center">
-                                            <button className="flex items-center px-2 border border-[#828282] transition text-[#828282] rounded">-</button>
-                                            <span className="text-[#333] font-bold">0</span>
-                                            <button className="flex items-center px-2 border border-[#828282] text-[#828282] rounded">+</button>
+                                            <button className="flex items-center px-2 border border-[#828282] transition text-[#828282] rounded" onClick={subtractChildrenGuests}>-</button>
+                                            <span className="text-[#333] font-bold">{guests.children}</span>
+                                            <button className="flex items-center px-2 border border-[#828282] text-[#828282] rounded" onClick={plusChildrenGuests}>+</button>
                                         </div>
                                     </div>}
                                 </div>
@@ -87,8 +122,7 @@ export function Modal({closeModal, modal, actualCity})
                                 </div>
                             </div>
                         </div>
-
-
+                        
                     </div>
                 </div>
             </div>
