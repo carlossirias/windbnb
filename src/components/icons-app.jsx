@@ -17,3 +17,23 @@ export function StarIcon({color = '#EB5757'})
         </svg>
     )
 }
+
+// eslint-disable-next-line react/prop-types
+export function CloseIcon({color = '#EB5757'})
+{
+    return(
+        <svg className="w-6 h-6" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+            <path fill={color} d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"/>
+        </svg>
+    )
+}
+
+// eslint-disable-next-line react/prop-types
+export function AdressIcon({color = '#EB5757'})
+{
+    return (
+        <svg className="h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill={color} d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z"/>
+        </svg>
+    )
+}

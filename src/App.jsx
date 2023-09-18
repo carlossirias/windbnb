@@ -1,10 +1,12 @@
 import { Navbar } from "./components/navbar"
 import { StaysSection } from "./components/stays-section"
+import { StayProvider } from "./context/Stays"
 
 function App() {
 
   return (
-    <>
+    
+    <StayProvider>
       <header className="flex justify-center">
         <Navbar>
 
@@ -15,7 +17,7 @@ function App() {
 
         </StaysSection>
       </main>
-    </>
+    </StayProvider>
   )
 }
 

@@ -4,7 +4,7 @@ import { StarIcon } from "./icons-app"
 export function Card({superHost = true, image, type, rating, beds, title })
 {
     return (
-        <div className="flex flex-col gap-3 place-content-between w-full lg:max-w-[400px]">
+        <div className="flex flex-col gap-3 place-content-between w-full lg:max-w-[1fr]">
             <div className="w-full h-[16rem]">
                 <img src={image} className='h-full w-full object-cover rounded-3xl' alt="" />
             </div>
@@ -30,6 +30,6 @@ export function Card({superHost = true, image, type, rating, beds, title })
 function SuperHost()
 {
     return(
-        <span className="stays__section__texts py-[0.37rem] px-2 rounded-full border border-black font-bold text-[0.75rem]">SUPER HOST</span>
+        <span className="stays__section__texts whitespace-nowrap py-[0.37rem] px-2 rounded-full border border-black font-bold text-[0.75rem]">SUPER HOST</span>
     )
 }
