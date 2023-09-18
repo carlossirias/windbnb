@@ -7,7 +7,7 @@ export function Navbar() {
     const { filter } = useFilters()
     const [modal, setModal] = useState(false)
 
-    const closeModal = () => { setModal(false) }
+    const closeModal = (event) => {event.preventDefault(); setModal(false) }
     const openModal = () => { setModal(true) }
 
     return (
