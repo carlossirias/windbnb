@@ -11,9 +11,6 @@ export function useFilters()
         throw new Error('UseFilters must be used within a FilterProvider')
     }
 
-    useEffect(()=>{
-        getStays()
-    }, [])
 
     function getStays()
     {

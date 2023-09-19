@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useFilters } from "../hocks/useFilters";
 import { AdressIcon } from "./icons-app"
-import { useState} from "react"
+import { useEffect, useState} from "react"
 
 export function CityButton({city})
 {
     const {filter, setFilters} = useFilters()
-    const [isClicked, setIsClicked] = useState(filter.city !== 'All');
+    const [isClicked, setIsClicked] = useState(filter.city !== 'All' || filter.city !== city);
 
     const handleCity = (event) =>
     {
@@ -22,6 +22,10 @@ export function CityButton({city})
 
         setIsClicked(!isClicked)
     }
+
+    useEffect(()=>{
+        if(filter.city !== city) setIsClicked(false)
+    }, [filter])
 
     return(
         <button key={city}  onClick={handleCity} value={city} className={`flex hover:bg-gray-100 transition p-4 gap-2 items-center ${filter.city == city && isClicked ? 'bg-gray-50' : ''} font-normal`}> <AdressIcon color="#4F4F4F" /> {city + ', Finland'}</button>
