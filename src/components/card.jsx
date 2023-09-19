@@ -5,8 +5,8 @@ export function Card({superHost = true, image, type, rating, beds, title })
 {
     return (
         <div className="flex flex-col gap-3 place-content-between w-full lg:max-w-[1fr]">
-            <div className="w-full h-[16rem]">
-                <img src={image} className='h-full w-full object-cover rounded-3xl' alt="" />
+            <div className="w-full h-[16rem] rounded-3xl overflow-hidden">
+                <img src={image} className='h-full w-full object-cover hover:scale-105 transition' alt="" />
             </div>
             <div className="flex mt-2 place-content-between items-center">
                 <div className="flex gap-2 items-center">

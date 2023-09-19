@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { StaysContext } from "../context/Stays";
 import  staysComplete  from '../mocks/stays.json'
 
