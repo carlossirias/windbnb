@@ -24,7 +24,8 @@ export function Modal({ closeModal, modal }) {
         setFilters({ ...filter, maxGuests: totalGuests })
     }, [guests])
 
-    const modalClass = modal ? 'visible' : 'hidden ';
+    const modalClass = modal === true ? 'visible' : 'closedModal';
+    const modalCloseClass = modal === false ? 'closeModal' : '' 
 
     const cities = getCities();
 
@@ -60,9 +61,9 @@ export function Modal({ closeModal, modal }) {
     }
 
     return (
-        <div className={`modal__container pointer-events-auto flex fixed z-0 top-0 left-0 right-0 bottom-0  ${modalClass} `}>
+        <div className={`modal__container pointer-events-auto flex fixed z-0 top-0 left-0 right-0 bottom-0 transition ${modalClass} `}>
             <a href="#" onClick={closeModal} className="modal__bg bg-black/20"></a>
-            <div className="modal z-10 w-full fixed top-0 m-[auto] max-sm:h-[85vh] flex justify-center bg-white">
+            <div className={`modal z-10 w-full fixed top-0 m-[auto] max-sm:h-[85vh] flex justify-center bg-white ${modalCloseClass}`}>
 
                 <div className="max-w-[1800px] md:py-16 p-4 md:px-20 w-full h-full ">
                     <div className="w-full md:hidden flex items-center place-content-between">

@@ -34,3 +34,52 @@ body
     width: 100%;
     height: 100%;
 }
+
+.modal
+{
+  animation: showModal .4s ease;
+}
+
+@keyframes showModal {
+  from{
+    transform: translateY(-150%);
+  }
+
+  to{
+    transform: translateY(0);
+  }
+}
+
+.closedModal .closeModal
+{
+  animation: closeModal .4s ease;
+}
+
+@keyframes closeModal {
+  from{
+    transform: translateY(0);
+
+  }
+
+  to{
+    transform: translateY(-150%);
+    display: none;
+  }
+}
+
+.closedModal
+{
+  display: none;
+  animation: closeModalContainer .4s ease;
+}
+
+@keyframes closeModalContainer {
+  from{
+    display: block;
+  }
+
+  to{
+    display: none;
+  }
+}
+

@@ -5,7 +5,7 @@ import { Modal } from "./modal"
 
 export function Navbar() {
     const { filter } = useFilters()
-    const [modal, setModal] = useState(false)
+    const [modal, setModal] = useState()
 
     const closeModal = (event) => {event.preventDefault(); setModal(false) }
     const openModal = () => { setModal(true) }
