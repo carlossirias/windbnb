@@ -15,9 +15,9 @@ function App() {
           </Navbar>
         </header>
         <main className="flex min-h-full flex-auto justify-center">
-          <StaysSection>
+          <StaysSection/>
 
-          </StaysSection>
+          
 
         </main>
         <Footer/>
