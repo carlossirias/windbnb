@@ -70,8 +70,8 @@ export function Modal({ closeModal, modal }) {
                         <button onClick={closeModal}><CloseIcon color="#333333" /></button>
                     </div>
 
-                    <div className="flex flex-col place-content-between h-[95%] gap-6 md:justify-center">
-                        <div>
+                    <div className="flex flex-col place-content-between h-[95%] md:justify-center">
+                        <div className="flex flex-col gap-6">
                             <div className="grid w-full max-sm:rounded-t-2xl max-sm:rounded-b-2xl md:rounded-l-2xl md:rounded-r-2xl max-md:mt-4 grid-cols-1 md:grid-cols-3 gap-0 shadow-[0px_1px_6px_0px_rgba(0,0,0,0.10)]">
                                 <button className="w-full overflow-hidden md:rounded-l-2xl max-sm:border-b md:border-r  drop-shadow-[0px_1px_6px_0px] shadow-gray-200 " onClick={handleLocation}>
                                     <div className={`px-7 py-3 flex w-full flex-col rounded-2xl ${locationClass}`}>
