@@ -10,7 +10,8 @@ export function Modal({closeModal, modal})
 {
     const {filter, setFilters, getStays} = useFilters()
     const [isLocation, setIsLocation] = useState(true)
-    const [guests, setGuests] = useState({
+    const initialGuests = JSON.parse(window.localStorage.getItem('guests'))
+    const [guests, setGuests] = useState(initialGuests || {
         children: 0,
         adults: 0,
     })
@@ -20,6 +21,7 @@ export function Modal({closeModal, modal})
         const adults = guests.adults
 
         const totalGuests = children + adults
+        window.localStorage.setItem('filters', JSON.stringify({ ...filter, maxGuests: totalGuests}))
         setFilters({ ...filter, maxGuests: totalGuests})     
     }, [guests])
 
@@ -33,18 +35,30 @@ export function Modal({closeModal, modal})
     const handleLocation = () => { setIsLocation(true) }
     const handleGuests = () => { setIsLocation(false)}
 
-    const plusChildrenGuests = ()=>{ setGuests({...guests, children: guests.children + 1})}
-    const plusAdultsGuests = ()=>{ setGuests({...guests, adults: guests.adults + 1})}
+    const plusChildrenGuests = ()=>{
+        const newGuests = {...guests, children: guests.children + 1}
+        window.localStorage.setItem('guests', JSON.stringify(newGuests)) 
+        setGuests({...guests, children: guests.children + 1})
+    }
+    const plusAdultsGuests = ()=>{
+        const newGuests = {...guests, adults: guests.adults + 1}
+        window.localStorage.setItem('guests', JSON.stringify(newGuests)) 
+        setGuests({...guests, adults: guests.adults + 1})
+    }
 
     const subtractChildrenGuests = () =>
     {
         if(guests.children <= 0) return
+        const newGuests = {...guests, children: guests.children - 1}
+        window.localStorage.setItem('guests', JSON.stringify(newGuests)) 
         setGuests({...guests, children: guests.children - 1})
     }
 
     const subtractAdultsGuests = () =>
     {
         if(guests.adults <= 0) return
+        const newGuests = {...guests, adults: guests.adults - 1}
+        window.localStorage.setItem('guests', JSON.stringify(newGuests)) 
         setGuests({...guests, adults: guests.adults - 1})
     }
 

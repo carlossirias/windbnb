@@ -17,6 +17,7 @@ export function useFilters()
         const staysFiltered = staysComplete.filter(stay=>{
             return (stay.city == filter.city && filter.maxGuests <= stay.maxGuests ) || (filter.city == 'All' && filter.maxGuests <= stay.maxGuests)
         })
+        window.localStorage.setItem('stays', JSON.stringify(staysFiltered))
         setStays(staysFiltered)
     }
 
