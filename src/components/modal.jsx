@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
 import { getCities } from "../services/getCities"
-import { AdressIcon } from "./icons-app"
 import { CloseIcon, SearchIcon } from "./icons-app"
 import { useFilters } from "../hocks/useFilters"
+import { CityButton } from "./city-button"
 
 
-export function Modal({closeModal, modal, actualCity})
+export function Modal({closeModal, modal})
 {
-    const {filter, setFilters} = useFilters()
+    const {filter, setFilters, getStays} = useFilters()
     const [isLocation, setIsLocation] = useState(true)
     const [guests, setGuests] = useState({
         children: 0,
@@ -48,12 +48,6 @@ export function Modal({closeModal, modal, actualCity})
         setGuests({...guests, adults: guests.adults - 1})
     }
 
-    const handleCity = (event) =>
-    {
-        const cityName = event?.target?.value;
-        setFilters({ ...filter, city: cityName})     
-    }
-
     return (
         <div className={`modal__container pointer-events-auto flex fixed z-0 top-0 left-0 right-0 bottom-0  ${modalClass} `}>
                 <a href="#" onClick={closeModal} className="modal__bg bg-black/20"></a>
@@ -69,7 +63,7 @@ export function Modal({closeModal, modal, actualCity})
                                 <button className="w-full overflow-hidden md:rounded-l-2xl border-r  drop-shadow-[0px_1px_6px_0px] shadow-gray-200 " onClick={handleLocation}>
                                     <div className={`px-7 py-3 flex w-full flex-col rounded-2xl ${locationClass}`}>
                                         <span className="text-left text-xs font-extrabold">LOCATION</span>
-                                        <span className="text-[#333] font-normal text-left text-sm">{actualCity}, Finland</span>
+                                        <span className="text-[#333] font-normal text-left text-sm">{filter.city}, Finland</span>
                                     </div>
                                 </button>
                                 <button className="w-full border-r" onClick={handleGuests}>
@@ -79,7 +73,7 @@ export function Modal({closeModal, modal, actualCity})
                                     </div>
                                 </button>
                                 <div className="flex items-center justify-center max-sm:hidden ">
-                                    <button className="py-[0.94rem] flex items-center gap-[0.68rem] px-6 bg-[#EB5757] rounded-2xl">
+                                    <button onClick={getStays} className="py-[0.94rem] flex items-center gap-[0.68rem] px-6 bg-[#EB5757] rounded-2xl">
                                         <SearchIcon className='w-4' color="#F2F2F2" />
                                         <span className="text-[#F2F2F2] font-bold">Search</span>
                                     </button>
@@ -90,7 +84,7 @@ export function Modal({closeModal, modal, actualCity})
                                 <div className=" flex flex-col md:p-2 md:h-[240px]">
                                     {
                                         isLocation && cities.map(city => {
-                                            return <button key={city} onClick={handleCity} value={city} className={`flex hover:bg-gray-100 transition p-4 gap-2 items-center ${actualCity == city ? 'bg-gray-50' : ''} font-normal`}> <AdressIcon color="#4F4F4F" /> {city + ', Finland'}</button>
+                                            return <CityButton key={city} city={city} />
                                         })
                                     }
                                 </div>

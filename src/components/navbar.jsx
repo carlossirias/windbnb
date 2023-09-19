@@ -31,7 +31,7 @@ export function Navbar() {
                 </div>
             </nav>
 
-            <Modal modal={modal} closeModal={closeModal} actualCity={filter.city}/>
+            <Modal modal={modal} closeModal={closeModal} />
             
         </>
     )

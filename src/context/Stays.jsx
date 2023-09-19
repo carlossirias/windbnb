@@ -6,12 +6,14 @@ export const StaysContext = createContext()
 // eslint-disable-next-line react/prop-types
 export function StayProvider ({children})
 {
+    const filtersInitialState = JSON.parse(window.localStorage.getItem('filters'))
+  
     const [stays, setStays] = useState(staysRes)
-    const [filter, setFilters] = useState({
+    const [filter, setFilters] = useState(filtersInitialState || {
         city: 'All',
         maxGuests: 0
     })
-    console.log(stays)
+
     return(
         <StaysContext.Provider
         value={{
