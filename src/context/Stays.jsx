@@ -16,7 +16,6 @@ export function StayProvider ({children})
         maxGuests: 0
     })
 
-    console.log(filter)
     return(
         <StaysContext.Provider
         value={{
