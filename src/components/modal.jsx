@@ -77,13 +77,18 @@ export function Modal({ closeModal, modal }) {
                                 <button className="w-full overflow-hidden md:rounded-l-2xl max-sm:border-b md:border-r  drop-shadow-[0px_1px_6px_0px] shadow-gray-200 " onClick={handleLocation}>
                                     <div className={`px-7 py-3 flex w-full flex-col rounded-2xl ${locationClass}`}>
                                         <span className="text-left text-xs font-extrabold">LOCATION</span>
-                                        <span className="text-[#333] font-normal text-left text-sm">{filter.city}, Finland</span>
+                                        {filter.city === "All" ? 
+                                        <span className="text-[#BDBDBD] font-normal text-left text-sm">{filter.city}, Finland</span>
+                                        :<span className="text-[#333] font-normal text-left text-sm">{filter.city}, Finland</span>}
+                                        
                                     </div>
                                 </button>
                                 <button className="w-full md:border-r" onClick={handleGuests}>
                                     <div className={`px-7 py-3 flex w-full flex-col rounded-2xl ${guestsClass}`}>
                                         <span className="text-left text-xs font-extrabold">GUESTS</span>
+                                        {filter.maxGuests == 0 ? 
                                         <span className="text-[#BDBDBD] text-left text-sm">Add guest</span>
+                                        :<span className="text-[#333] text-left text-sm">{filter.maxGuests} guests</span>}
                                     </div>
                                 </button>
                                 <div className="md:flex items-center justify-center hidden ">
