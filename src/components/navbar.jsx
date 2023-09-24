@@ -18,15 +18,15 @@ export function Navbar() {
                 </div>
                 <div className="max-sm:w-full flex justify-center max-sm:mt-10">
                     <button onClick={openModal} className="overflow-hidden flex shadow-[0px_1px_6px_0px] shadow-gray-200 rounded-2xl">
-                        <div className="w-fit h-full border-r border-gray-200 p-4">
+                        <span className="w-fit h-full border-r border-gray-200 p-4">
                             <span className="text-[#333] text-sm">{filter.city}, Finland</span>
-                        </div>
-                        <div className="w-fit h-full border-r border-gray-200 p-4">
+                        </span>
+                        <span className="w-fit h-full border-r border-gray-200 p-4">
                             <span className="text-[#BDBDBD] text-sm">Add guest</span>
-                        </div>
-                        <div className="h-[52px] flex items-center justify-center px-4">
+                        </span>
+                        <span className="h-[52px] flex items-center justify-center px-4">
                             <SearchIcon></SearchIcon>
-                        </div>
+                        </span>
                     </button>
                 </div>
             </nav>
